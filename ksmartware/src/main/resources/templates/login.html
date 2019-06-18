@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>login</title>
+<script>
+$(document).ready(function(){
+	$('#loginBtn').click(function(){
+		console.log("loginBtn 클릭!");
+		$('#loginForm').submit();
+	});
+});
+
+</script>
+
+</head>
+<body>   
+	<h1>login</h1>
+	<a href="/">index바로가기</a>
+	<div>
+		<form th:action="@{/login}" method="post">
+	        <input type="text" id="username" name="memberId" autofocus="autofocus" placeholder="아이디를 입력하시오"/> <br />
+	        <input type="password" id="password" name="memberPw" placeholder="비밀번호를 입력하시오"/> <br />
+	        <input type="submit" value="Login"/>
+	    </form>
+	</div>
+	
+	
+    
+</body>
+</html>

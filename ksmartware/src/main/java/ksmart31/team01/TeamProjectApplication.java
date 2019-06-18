@@ -1,13 +1,13 @@
-package ksmart31.team02;
+package ksmart31.team01;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KsmartwareApplication {
+public class TeamProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KsmartwareApplication.class, args);
+		SpringApplication.run(TeamProjectApplication.class, args);
 	}
 
 }
