@@ -13,14 +13,10 @@ public class IndexController {
 	
 	@Autowired private IndexService indexService;
 	
-	@GetMapping("/")
+	@GetMapping(value = { "/", "/index" })
 	public String index(HttpSession session, Model model){
-	
-	
+		System.out.println("IndexController.index()");
 		return "index";
-	}
-	
-
-	
+	}	
 		
 }
