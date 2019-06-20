@@ -1,4 +1,4 @@
-package ksmart31.team00;
+package ksmart31;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
