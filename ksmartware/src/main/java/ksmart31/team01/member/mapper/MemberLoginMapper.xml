@@ -3,16 +3,16 @@
 <mapper namespace="ksmart31.team01.member.mapper.MemberLoginMapper">
 
 	<!-- 로그인 처리를 위한 회원 정보 조회 -->
-				<!-- vo타입주소 -->							<!-- resultMap에서 쓸 id -->
-	<resultMap type="ksmart31.team01.member.vo.Member" id="selectMemberForLogin">
-				<!-- db컬럼 -->		<!-- vo 데이터변수명 -->
+				<!-- domain타입주소 -->							<!-- resultMap에서 쓸 id -->
+	<resultMap type="ksmart31.team01.member.domain.Member" id="selectMemberForLogin">
+				<!-- db컬럼 -->		<!-- domain 데이터변수명 -->
 		<result column="member_id" property="memberId"/>
 		<result column="member_name" property="memberName"/>
 		<result column="member_employee_code" property="memberEmployeeCode"/>
 		<result column="department_name" property="departmentName"/>
 		<result column="member_position_name" property="memberPositionName"/>
 	</resultMap>
-	<select id="selectMemberForLogin" parameterType="ksmart31.team01.member.vo.Member" resultMap="selectMemberForLogin">
+	<select id="selectMemberForLogin" parameterType="ksmart31.team01.member.domain.Member" resultMap="selectMemberForLogin">
 		SELECT 
 			member_id,
 			member_name,

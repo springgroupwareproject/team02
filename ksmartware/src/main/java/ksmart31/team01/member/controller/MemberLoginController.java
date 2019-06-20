@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ksmart31.team01.member.domain.Member;
 import ksmart31.team01.member.service.MemberLoginService;
-import ksmart31.team01.member.vo.Member;
 
 @Controller
 public class MemberLoginController {
@@ -19,7 +19,7 @@ public class MemberLoginController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session){
 		session.invalidate();
-		return "redirect:"+"/login";
+		return "redirect:"+"/";
 	}
 	// 2. 로그인 액션  MemberController.getMember -> MemberService.getMemberForLogin -> MemberMapper.selectMemberForLogin -> 역순으로 리턴 -> index.jsp
 	@PostMapping("/login")
@@ -30,7 +30,7 @@ public class MemberLoginController {
 		Member loginMember = memberLoginService.getMemberForLogin(member);
 		System.out.println("MemberController.getMember POST loginMember :"+loginMember);
 		if(loginMember == null){
-			return "login";
+			return "member/login";
 		} else {
 			session.setAttribute("loginMember", loginMember);
 			System.out.println("MemberController.getMember POST session :"+session);
@@ -44,7 +44,7 @@ public class MemberLoginController {
 		if(session.getAttribute("loginMember") != null) {
 			return "redirect:"+"/";
 		} else {
-			return "login";
+			return "member/login";
 		}
 	}	
 }
