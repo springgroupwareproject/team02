@@ -12,25 +12,38 @@
 <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js}"></script>
 <script>
 	$(document).ready(function() {
-		// 기안문서삭제
-		$('#btnRemove').on('click',function() {
-			let ck = new Array();
-			$('.ck:checked').each(function(index, item) {
-				ck.push($(item).val());
-			});
+		$('.ck').change(function(){
+			if($(this).is(":checked") == true){
+	            console.log('#checkbox 클릭');
+	            $("#btnRemove").show(); // 체크박스가 체크되면 삭제버튼 보이기
+	            
+	    		// 기안문서삭제
+	    		$('#btnRemove').on('click',function() {
+	    			console.log('삭제버튼 클릭');
+	    			let ck = new Array();
+	    			console.log('ck:'+ck);
+	    			$('.ck:checked').each(function(i, item) {
+	    				ck.push($(item).val());
+	    				console.log('ck:'+ck);
+	    			}); 
+	    			
+	    			// 비동기요청
+	    			$.ajax({
+	    				url:'/removeDraftDocument'
+	    				, type:'POST'
+	    	           	, data:{'ck':ck}
+	    				, success : function() {
+	    					console.log('삭제 성공');
+	    					location.reload();	    					
+	    				}
+	    			});
+	    		});
+
+	        }else{
+	        	console.log('#checkbox 클릭해제');
+	        	$("#btnRemove").hide(); // 체크박스가 해제되면삭제버튼 숨기기
+	        }
 			
-			console.log('삭제버튼 클릭');
-			
-			// 비동기요청
-			$.ajax({
-				url:'/removeDraftDocument'
-				, type:'POST'
-	           	, data:{'ck':ck}
-				, success : function() {
-					console.log('삭제 성공');
-				} 
-			});
-		
 		});
 	});
 </script>
@@ -38,7 +51,7 @@
 <body>
 <div class="container">
 <h2>결재문서관리(워크플로우 문서 관리)</h2>
-	<button type="button" id="btnRemove">삭제</button>
+	<button type="button" id="btnRemove" hidden="hidden">삭제</button>
 	<table style="width:100%">
 		<tr>
 			<th></th>
@@ -50,10 +63,10 @@
 		   	<th>최종승인일</th>
 		</tr>
 		<tr th:each="list : ${list}">
-			<td><input type="checkbox" class="ck" value="${list.draftDocumentCode}"></td>
+			<td><input id="checkbox" type="checkbox" class="ck" th:value="${list.draftDocumentCode}"></td>
 			<td th:text="${list.draftDocumentStatus}"></td>
 			<td>
-				<a th:href="@{/boardDetail(draftDocumentCode = ${list.draftDocumentCode})}">
+				<a th:href="@{/removeDraftDocument(draftDocumentCode = ${list.draftDocumentCode})}">
 					<th:block th:text="${list.draftDocumentFileSaveName}"></th:block>
 				</a>
 			</td>

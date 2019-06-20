@@ -25,15 +25,7 @@ public class Jiwo {
 		}
 	}
 	
-	// 기안문서 조회(워크플로우 문서 관리)
-	@GetMapping("/documentApprovalManagement")
-	public String getDraftDocument(Model model) {
-		System.out.println("(C) getDraftDocument() 실행");
-		List<DraftDocument> list = documentManagementService.getDraftDocument();
-		System.out.println("(C) getDraftDocument() list : "+list);
-		model.addAttribute("list",list);
-		return "/view/admin/documentManagement/documentApprovalManagement";
-	}
+
 	
 	// 관리자 결재선 관리(공통프로세스 목록)
 	@GetMapping("/documentProcessManagement")
@@ -43,26 +35,6 @@ public class Jiwo {
 		System.out.println("(C) getApprovalProcess() list : "+list);
 		model.addAttribute("list",list);
 		return "/view/admin/documentManagement/documentProcessManagement";
-	}
-
-	// 공통양식 카테고리 목록
-	@GetMapping("/documentFormManagement")
-	public String getDocumentFormManagement(Model model) {
-		System.out.println("(C) getDocumentFormManagement() 실행");
-		List<DocumentFormCategory> list = documentManagementService.getDocumentFormManagement();
-		System.out.println("(C) getDocumentFormManagement() list : "+list);
-		model.addAttribute("list",list);
-		return "/view/admin/documentManagement/documentFormManagement";
-	}
-	
-		// 공통양식 카테고리 목록
-	@GetMapping("/documentFormManagement")
-	public String getDocumentFormManagement(Model model) {
-		System.out.println("(C) getDocumentFormManagement() 실행");
-		List<DocumentFormCategory> list = documentManagementService.getDocumentFormManagement();
-		System.out.println("(C) getDocumentFormManagement() list : "+list);
-		model.addAttribute("list",list);
-		return "/view/admin/documentManagement/documentFormManagement";
 	}
 	*/
 }

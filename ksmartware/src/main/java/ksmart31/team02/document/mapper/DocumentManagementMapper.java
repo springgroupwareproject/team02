@@ -22,7 +22,7 @@ public interface DocumentManagementMapper {
 	public List<ApprovalProcess> selectApprovalProcess();
 	
 	// 문서양식 목록 페이징
-	public int selectDocumentFormCount();
+	// public int selectDocumentFormCount();
 	
 	// 문서양식 목록
 	public List<DocumentForm> selectDocumentForm(String documentFormCategoryCode);

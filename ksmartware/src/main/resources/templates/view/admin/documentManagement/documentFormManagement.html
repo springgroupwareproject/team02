@@ -12,24 +12,20 @@
 <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js}"></script>
 <script>
 	$(document).ready(function() {
-		var documentFormCategoryCode;
-		
 		// 카테고리별 문서양식 목록
-		$('#documentFormCategory').click(function() {
+		$('.documentFormCategory a').click(function() {
 			console.log('#documentFormCategory click');
-			
 			//비동기 요청
 			$.ajax({
 				url:'/getDocumentForm'
 					, type:'GET'
-					, data : {documentFormCategoryCode : $('#documentFormCategory').val()}
-		            , success:function(result) {
-		            	
-		            	console.log(result);
+					, data : {documentFormCategoryCode : $(this).attr("value")}
+		            , success:function(data) {
+		            	console.log(data);
 		            	$('#documentFormList').empty();
-		                $(data.documentFormList).each(function(index,item){
+		                $(data).each(function(i,item){
 		                    $('#documentFormList').append('<tr>');
-		                    $('#documentFormList').append('<td><input type="checkbox" class="ck" value="'+item.id+'"></td>');
+		                    $('#documentFormList').append('<td><input type="checkbox" class="ck" value="'+item.documentFormCategoryCode+'"></td>');
 		                    $('#documentFormList').append('<td>'+item.documentFormCategoryName+'</td>');
 		                    $('#documentFormList').append('<td>'+item.documentFormName+'</td>');
 		                    $('#documentFormList').append('<td>'+item.documentFormDate+'</td>');
@@ -37,7 +33,9 @@
 		        	   	});
 		            }
 			});
+
 		});
+				
 	});
 </script>
 </head> 
@@ -46,8 +44,8 @@
 <h1>공통문서양식 관리</h1>
 	<table>
 		<tr th:each="list : ${list}">
-			<td>
-				<a th:id="documentFormCategory" th:val="${list.documentFormCategoryCode}" th:href="@{/getDocumentForm(documentFormCategoryCode = ${list.documentFormCategoryCode})}">
+			<td class = "documentFormCategory">
+				<a th:value="${list.documentFormCategoryCode}" href="#">
 					<th:block th:text="${list.documentFormCategoryName}"></th:block>
 				</a>
 			</td>
@@ -55,7 +53,7 @@
 	</table>
 </div>
 <div class="container">
-	<table>
+	<table border="1">
 		<thead>
             <tr>
                 <th></th>
