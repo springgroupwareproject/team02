@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ksmart31.team02.document.mapper.DocumentFormMapper;
 import ksmart31.team02.document.mapper.DocumentManagementMapper;
 import ksmart31.team02.document.vo.DocumentForm;
 import ksmart31.team02.document.vo.DraftDocument;
@@ -17,6 +18,7 @@ import ksmart31.team02.document.vo.DraftDocument;
 @RestController
 public class DocumentManagementRestContorller {
 	@Autowired private DocumentManagementMapper documentManagementMapper;
+	@Autowired private DocumentFormMapper documentFormMapper;
 	
 	// 기안문서 삭제
 	@PostMapping("/removeDraftDocument")
@@ -36,7 +38,7 @@ public class DocumentManagementRestContorller {
 	public List<DocumentForm> getDocumentForm(@RequestParam(value = "documentFormCategoryCode", required = false) String documentFormCategoryCode) {
 		System.out.println("(C) getDocumentForm() 실행");
 		System.out.println("(C) getDocumentForm() documentFormCategoryCode : "+ documentFormCategoryCode);
-		List<DocumentForm> documentFormList = documentManagementMapper.selectDocumentForm(documentFormCategoryCode);
+		List<DocumentForm> documentFormList = documentFormMapper.selectDocumentForm(documentFormCategoryCode);
 		System.out.println("(C) getDocumentForm() documentFormList:"+documentFormList);
 		return documentFormList;
 	}

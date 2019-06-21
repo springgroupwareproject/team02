@@ -60,13 +60,4 @@ public class DocumentManagementService {
 		System.out.println("(S) getApprovalProcess() list : " + list);
 		return list;
 	}
-	
-	// 공통양식 카테고리 목록
-	public List<DocumentFormCategory> getDocumentFormManagement() {
-		System.out.println("(S) getDocumentFormManagement() 실행");
-		List<DocumentFormCategory> list = documentManagementMapper.selectDocumentFormCategory();
-		System.out.println("(S) getDocumentFormManagement() list : " + list);
-		return list;
-	}
-	
 }

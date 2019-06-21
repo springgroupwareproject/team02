@@ -20,13 +20,5 @@ public interface DocumentManagementMapper {
 	
 	// 관리자 결재선 관리(공통프로세스 목록)
 	public List<ApprovalProcess> selectApprovalProcess();
-	
-	// 문서양식 목록 페이징
-	// public int selectDocumentFormCount();
-	
-	// 문서양식 목록
-	public List<DocumentForm> selectDocumentForm(String documentFormCategoryCode);
-	
-	// 공통양식 카테고리 목록
-	public List<DocumentFormCategory> selectDocumentFormCategory();
+
 }
