@@ -52,13 +52,11 @@ public class DocumentFormController {
 		return "member/draftDocument/documentFormList";
 	}
 	
-	//test
 	// 휴가신청서 작성폼
 	@GetMapping("/leaveApplicationForm")
 	public String getLeaveApplicationForm(String documentFormCode, Model model) {
 		System.out.println("(C) getLeaveApplicationForm() 실행");
 		System.out.println("(C) getLeaveApplicationForm() documentFormCode:"+documentFormCode);
-		
 		return "member/documentForm/leaveApplicationForm";
 	}
 	
