@@ -14,7 +14,6 @@
 		// 카테고리별 문서양식 목록
 		$('.documentFormCategory a').click(function() {
 			console.log('#documentFormCategory click');
-			
 			//비동기 요청
 			$.ajax({
 				url:'/getDocumentForm'
@@ -25,13 +24,21 @@
 		            	$('#documentFormList').empty();
 		                $(data).each(function(i,item){
 		                    $('#documentFormList').append('<tr>');
-		                    $('#documentFormList').append('<td><a value="'+item.documentFormCode+'" href="#">'+item.documentFormName+'</a></td>');
+		                    $('#documentFormList').append('<td><a href="#" id="documentFormName" value="'+item.documentFormCode+'">'+item.documentFormName+'</a></td>');
 		                    $('#documentFormList').append('<td>'+item.documentFormDate+'</td>');
 		                    $('#documentFormList').append('</tr>');
 		        	   	});
-		                
-		                documentFormCode = data.documentFormCode;
 		            }
+			});
+			
+			// 양식폼으로 이동
+			$(document).on('click','#documentFormName',function(){
+				console.log('documentFormName 클릭 테스트');
+				let documentFormCode = $(this).attr('value');
+				console.log('documentFormCode val = '+documentFormCode);
+				
+				location.href="/leaveApplicationForm?documentFormCode="+documentFormCode;
+				
 			});
 		});
 	});
@@ -51,7 +58,7 @@
 	</table>
 </div>
 <div class="container">
-	<form documentFormCOde값 넘기기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!>
+	<form>
 		<table border="1">
 			<thead>
 	            <tr>
@@ -60,6 +67,7 @@
 	            </tr>
 	        </thead>
 			<tbody id="documentFormList">
+				
 	        </tbody>
 		</table>
 	</form>
