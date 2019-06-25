@@ -13,7 +13,7 @@ import ksmart31.team02.document.vo.DocumentFormCategory;
 @Controller
 public class DocumentFormController {
 	@Autowired private DocumentFormMapper documentFormMapper;
-	
+
 	// 구매요청서 작성폼
 	@GetMapping("/purchaseRequisitionForm")
 	public String addPurchaseRequisitionForm() {
@@ -42,6 +42,14 @@ public class DocumentFormController {
 		return "member/documentForm/cashDisbursementVoucherForm";
 	}
 	
+	// 휴가신청서 작성폼
+	@GetMapping("/leaveApplicationForm")
+	public String getLeaveApplicationForm(String documentFormCode, Model model) {
+		System.out.println("(C) getLeaveApplicationForm() 실행");
+		System.out.println("(C) getLeaveApplicationForm() documentFormCode:"+documentFormCode);
+		return "member/documentForm/leaveApplicationForm";
+	}
+	
 	// 공통양식 카테고리 목록
 	@GetMapping("/documentFormList")
 	public String getDocumentFormCategory(Model model) {
@@ -51,14 +59,4 @@ public class DocumentFormController {
 		model.addAttribute("list",list);
 		return "member/draftDocument/documentFormList";
 	}
-	
-	// 휴가신청서 작성폼
-	@GetMapping("/leaveApplicationForm")
-	public String getLeaveApplicationForm(String documentFormCode, Model model) {
-		System.out.println("(C) getLeaveApplicationForm() 실행");
-		System.out.println("(C) getLeaveApplicationForm() documentFormCode:"+documentFormCode);
-		return "member/documentForm/leaveApplicationForm";
-	}
-	
-	
 }

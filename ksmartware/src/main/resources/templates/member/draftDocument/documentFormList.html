@@ -21,7 +21,7 @@
 				            	$('#documentFormList').empty();
 				                $(data).each(function(i,item){
 				                    $('#documentFormList').append('<tr>');
-				                    $('#documentFormList').append('<td><a href="#" id="documentFormName" value="'+item.documentFormCode+'">'+item.documentFormName+'</a></td>');
+				                    $('#documentFormList').append('<td><a href="#" id="documentFormName" value="'+item.documentFormName+'">'+item.documentFormName+'</a></td>');
 				                    $('#documentFormList').append('<td>'+item.documentFormDate+'</td>');
 				                    $('#documentFormList').append('</tr>');
 				        	   	});
@@ -31,11 +31,26 @@
 					// 양식폼으로 이동
 					$(document).on('click','#documentFormName',function(){
 						console.log('documentFormName 클릭 테스트');
-						let documentFormCode = $(this).attr('value');
-						console.log('documentFormCode val = '+documentFormCode);
+						let documentFormName = $(this).attr('value');
+						console.log('documentFormName val : '+documentFormName);
 						
-						location.href="/leaveApplicationForm?documentFormCode="+documentFormCode;
-						
+						if(documentFormName == "휴가신청서") {
+							// 휴가신청서 양식폼으로 이동
+							location.href="/leaveApplicationForm";
+						}else if(documentFormName == "지출결의서") {
+							// 지출결의서 양식폼으로 이동
+							location.href="/cashDisbursementVoucherForm";
+						}else if(documentFormName == "프로젝트 지출결의서") {
+							// 프로젝트 지출결의서 양식폼으로 이동
+							location.href="/projectCashDisbursementVoucherForm";
+						}else if(documentFormName == "프로젝트 업무보고") {
+							// 프로젝트 업무보고 양식폼으로 이동
+							location.href="/projectReportForm";
+						}else if(documentFormName == "구매요청서") {
+							// 구매요청서 양식폼으로 이동
+							location.href="/purchaseRequisitionForm";
+						}
+				
 					});
 				});
 			});
